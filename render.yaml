@@ -1,0 +1,16 @@
+# Este arquivo define os serviços que o Render irá construir e implantar.
+# Coloque-o na raiz do seu repositório GitHub.
+
+services:
+  - type: web
+    name: discord-tickets-dashboard
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js # Renderizará o server.js como o ponto de entrada
+    plan: free # Plano gratuito
+    # Variáveis de ambiente (opcional, mas recomendado para produção)
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000 # Render define a porta automaticamente, mas é bom ter um valor padrão
