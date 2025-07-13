@@ -1,21 +1,20 @@
 {
-  "name": "discord-tickets-dashboard",
+  "name": "discord-ticket-dashboard",
   "version": "1.0.0",
-  "description": "Dashboard Web para Sistema de Tickets Discord",
+  "description": "Dashboard web para visualização e gerenciamento de tickets fechados do sistema Discord",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "keywords": ["discord", "dashboard", "tickets", "express"],
+  "keywords": ["discord", "dashboard", "tickets", "nodejs", "express", "neon", "postgresql"],
   "author": "Seu Nome",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^14.14.1",
-    "express": "^4.18.2",
+    "@neondatabase/serverless": "^0.9.0",
     "cors": "^2.8.5",
-    "path": "^0.12.7",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
