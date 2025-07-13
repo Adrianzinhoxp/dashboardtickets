@@ -1,6 +1,6 @@
 let allTickets = []
 let filteredTickets = []
-let lucide // Declare the lucide variable
+const lucide = window.lucide // Garante que lucide esteja disponível
 
 // Inicializar quando a página carregar
 document.addEventListener("DOMContentLoaded", () => {
@@ -150,7 +150,7 @@ function renderTickets() {
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
                 <button onclick="showTicketMessages('${ticket.id}')" 
-                        class="text-indigo-600 hover:text-indigo-900 p-2 rounded-lg hover:bg-indigo-50 transition-colors">
+                        class="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition-colors">
                     <i data-lucide="eye" class="h-4 w-4"></i>
                 </button>
             </td>
@@ -164,8 +164,10 @@ function renderTickets() {
 
 function getPriorityColor(priority) {
   switch (priority) {
-    case "Alta":
+    case "Crítica": // Adicionado para consistência
       return "bg-red-500"
+    case "Alta":
+      return "bg-orange-500"
     case "Média":
       return "bg-yellow-500"
     case "Baixa":

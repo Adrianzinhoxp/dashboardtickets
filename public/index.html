@@ -8,12 +8,6 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎫</text></svg>">
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .loading {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
         /* Estilos para o modo escuro */
         html.dark {
             /* Cores de fundo */
@@ -87,6 +81,34 @@
             background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
         }
         html.dark .bg-gray-200 {
+            background-color: rgb(51 65 85 / var(--tw-bg-opacity)); /* slate-700 */
+        }
+        /* Adicionado para o modal de mensagens */
+        html.dark #messageModal .bg-white {
+            background-color: rgb(15 23 42 / var(--tw-bg-opacity)); /* slate-950 */
+        }
+        html.dark #modalContent .bg-blue-100 {
+            background-color: rgb(30 58 138 / var(--tw-bg-opacity)); /* blue-950 */
+        }
+        html.dark #modalContent .bg-gray-100 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark #modalContent .bg-white\/50 {
+            background-color: rgb(15 23 42 / 0.5); /* slate-950 with opacity */
+        }
+        html.dark #modalContent .text-blue-600 {
+            color: rgb(165 180 252 / var(--tw-text-opacity)); /* indigo-300 */
+        }
+        html.dark #modalContent .text-gray-900 {
+            color: rgb(248 250 252 / var(--tw-text-opacity)); /* slate-50 */
+        }
+        html.dark #modalContent .text-gray-500 {
+            color: rgb(100 116 139 / var(--tw-text-opacity)); /* slate-500 */
+        }
+        html.dark #modalContent .bg-gray-50 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark #modalContent .bg-gray-200 {
             background-color: rgb(51 65 85 / var(--tw-bg-opacity)); /* slate-700 */
         }
     </style>
@@ -188,12 +210,14 @@
                     </div>
                     <select id="categoryFilter" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 min-w-48">
                         <option value="all">Todas Categorias</option>
-                        <option value="Corregedoria">Corregedoria</option>
-                        <option value="Up de Patente">Up de Patente</option>
+                        <option value="Suporte Técnico">Suporte Técnico</option>
                         <option value="Dúvidas Gerais">Dúvidas Gerais</option>
+                        <option value="Reportar Bug">Reportar Bug</option>
+                        <option value="Sugestões">Sugestões</option>
                     </select>
                     <select id="priorityFilter" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 min-w-48">
                         <option value="all">Todas Prioridades</option>
+                        <option value="Crítica">Crítica</option>
                         <option value="Alta">Alta</option>
                         <option value="Média">Média</option>
                         <option value="Baixa">Baixa</option>
