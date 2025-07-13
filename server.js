@@ -31,7 +31,7 @@ async function ensureTablesExist() {
         closed_by TEXT NOT NULL,
         priority TEXT NOT NULL,
         satisfaction INTEGER,
-        channel_id TEXT NOT NULL,
+        channel_id TEXT NOT NULL UNIQUE,
         created_at TIMESTAMP WITH TIME ZONE NOT NULL,
         reason TEXT
       );
