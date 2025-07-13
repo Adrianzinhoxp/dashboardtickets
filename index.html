@@ -8,11 +8,108 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎫</text></svg>">
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Estilos para o modo escuro */
+        html.dark {
+            /* Cores de fundo */
+            --tw-bg-opacity: 1;
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+            /* Cores de texto */
+            --tw-text-opacity: 1;
+            color: rgb(248 250 252 / var(--tw-text-opacity)); /* slate-50 */
         }
-        .loading {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        html.dark .bg-white {
+            background-color: rgb(15 23 42 / var(--tw-bg-opacity)); /* slate-950 */
+        }
+        html.dark .bg-gray-50 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .bg-gray-100 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .text-gray-900 {
+            color: rgb(248 250 252 / var(--tw-text-opacity)); /* slate-50 */
+        }
+        html.dark .text-gray-600 {
+            color: rgb(148 163 184 / var(--tw-text-opacity)); /* slate-400 */
+        }
+        html.dark .text-gray-500 {
+            color: rgb(100 116 139 / var(--tw-text-opacity)); /* slate-500 */
+        }
+        html.dark .border-gray-300 {
+            border-color: rgb(51 65 85 / var(--tw-border-opacity)); /* slate-700 */
+        }
+        html.dark .divide-gray-200 {
+            border-color: rgb(51 65 85 / var(--tw-border-opacity)); /* slate-700 */
+        }
+        html.dark .hover\:bg-gray-50:hover {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .bg-blue-100 {
+            background-color: rgb(30 58 138 / var(--tw-bg-opacity)); /* blue-950 */
+        }
+        html.dark .text-blue-900 {
+            color: rgb(219 234 254 / var(--tw-text-opacity)); /* blue-100 */
+        }
+        html.dark .bg-indigo-100 {
+            background-color: rgb(30 27 75 / var(--tw-bg-opacity)); /* indigo-950 */
+        }
+        html.dark .text-indigo-600 {
+            color: rgb(165 180 252 / var(--tw-text-opacity)); /* indigo-300 */
+        }
+        html.dark .bg-gray-200 {
+            background-color: rgb(51 65 85 / var(--tw-bg-opacity)); /* slate-700 */
+        }
+        html.dark .hover\:bg-gray-300:hover {
+            background-color: rgb(71 85 105 / var(--tw-bg-opacity)); /* slate-600 */
+        }
+        html.dark .text-gray-800 {
+            color: rgb(248 250 252 / var(--tw-text-opacity)); /* slate-50 */
+        }
+        html.dark .bg-gray-50 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .bg-gray-200 {
+            background-color: rgb(51 65 85 / var(--tw-bg-opacity)); /* slate-700 */
+        }
+        html.dark .bg-gray-100 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .bg-white\/50 {
+            background-color: rgb(15 23 42 / 0.5); /* slate-950 with opacity */
+        }
+        html.dark .bg-gray-50 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .bg-gray-200 {
+            background-color: rgb(51 65 85 / var(--tw-bg-opacity)); /* slate-700 */
+        }
+        /* Adicionado para o modal de mensagens */
+        html.dark #messageModal .bg-white {
+            background-color: rgb(15 23 42 / var(--tw-bg-opacity)); /* slate-950 */
+        }
+        html.dark #modalContent .bg-blue-100 {
+            background-color: rgb(30 58 138 / var(--tw-bg-opacity)); /* blue-950 */
+        }
+        html.dark #modalContent .bg-gray-100 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark #modalContent .bg-white\/50 {
+            background-color: rgb(15 23 42 / 0.5); /* slate-950 with opacity */
+        }
+        html.dark #modalContent .text-blue-600 {
+            color: rgb(165 180 252 / var(--tw-text-opacity)); /* indigo-300 */
+        }
+        html.dark #modalContent .text-gray-900 {
+            color: rgb(248 250 252 / var(--tw-text-opacity)); /* slate-50 */
+        }
+        html.dark #modalContent .text-gray-500 {
+            color: rgb(100 116 139 / var(--tw-text-opacity)); /* slate-500 */
+        }
+        html.dark #modalContent .bg-gray-50 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark #modalContent .bg-gray-200 {
+            background-color: rgb(51 65 85 / var(--tw-bg-opacity)); /* slate-700 */
         }
     </style>
 </head>
@@ -28,7 +125,7 @@
                         </div>
                         <div>
                             <h1 class="text-2xl font-bold text-gray-900">Dashboard de Tickets</h1>
-                            <p class="text-gray-600">Sistema de Gerenciamento Discord</p>
+                            <p class="text-gray-600">Sistema de Gerenciamento Tickets Policia</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3">
@@ -39,6 +136,9 @@
                         <button onclick="refreshData()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors">
                             <i data-lucide="refresh-cw" class="h-4 w-4"></i>
                             Atualizar
+                        </button>
+                        <button id="themeToggle" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors">
+                            <!-- Ícone será definido pelo JavaScript -->
                         </button>
                     </div>
                 </div>
@@ -110,12 +210,14 @@
                     </div>
                     <select id="categoryFilter" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 min-w-48">
                         <option value="all">Todas Categorias</option>
-                        <option value="Corregedoria">Corregedoria</option>
-                        <option value="Up de Patente">Up de Patente</option>
+                        <option value="Suporte Técnico">Suporte Técnico</option>
                         <option value="Dúvidas Gerais">Dúvidas Gerais</option>
+                        <option value="Reportar Bug">Reportar Bug</option>
+                        <option value="Sugestões">Sugestões</option>
                     </select>
                     <select id="priorityFilter" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 min-w-48">
                         <option value="all">Todas Prioridades</option>
+                        <option value="Crítica">Crítica</option>
                         <option value="Alta">Alta</option>
                         <option value="Média">Média</option>
                         <option value="Baixa">Baixa</option>
@@ -185,5 +287,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="theme-toggle.js"></script>
 </body>
 </html>
