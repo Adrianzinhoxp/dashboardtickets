@@ -14,6 +14,81 @@
         .loading {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
+        /* Estilos para o modo escuro */
+        html.dark {
+            /* Cores de fundo */
+            --tw-bg-opacity: 1;
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+            /* Cores de texto */
+            --tw-text-opacity: 1;
+            color: rgb(248 250 252 / var(--tw-text-opacity)); /* slate-50 */
+        }
+        html.dark .bg-white {
+            background-color: rgb(15 23 42 / var(--tw-bg-opacity)); /* slate-950 */
+        }
+        html.dark .bg-gray-50 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .bg-gray-100 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .text-gray-900 {
+            color: rgb(248 250 252 / var(--tw-text-opacity)); /* slate-50 */
+        }
+        html.dark .text-gray-600 {
+            color: rgb(148 163 184 / var(--tw-text-opacity)); /* slate-400 */
+        }
+        html.dark .text-gray-500 {
+            color: rgb(100 116 139 / var(--tw-text-opacity)); /* slate-500 */
+        }
+        html.dark .border-gray-300 {
+            border-color: rgb(51 65 85 / var(--tw-border-opacity)); /* slate-700 */
+        }
+        html.dark .divide-gray-200 {
+            border-color: rgb(51 65 85 / var(--tw-border-opacity)); /* slate-700 */
+        }
+        html.dark .hover\:bg-gray-50:hover {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .bg-blue-100 {
+            background-color: rgb(30 58 138 / var(--tw-bg-opacity)); /* blue-950 */
+        }
+        html.dark .text-blue-900 {
+            color: rgb(219 234 254 / var(--tw-text-opacity)); /* blue-100 */
+        }
+        html.dark .bg-indigo-100 {
+            background-color: rgb(30 27 75 / var(--tw-bg-opacity)); /* indigo-950 */
+        }
+        html.dark .text-indigo-600 {
+            color: rgb(165 180 252 / var(--tw-text-opacity)); /* indigo-300 */
+        }
+        html.dark .bg-gray-200 {
+            background-color: rgb(51 65 85 / var(--tw-bg-opacity)); /* slate-700 */
+        }
+        html.dark .hover\:bg-gray-300:hover {
+            background-color: rgb(71 85 105 / var(--tw-bg-opacity)); /* slate-600 */
+        }
+        html.dark .text-gray-800 {
+            color: rgb(248 250 252 / var(--tw-text-opacity)); /* slate-50 */
+        }
+        html.dark .bg-gray-50 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .bg-gray-200 {
+            background-color: rgb(51 65 85 / var(--tw-bg-opacity)); /* slate-700 */
+        }
+        html.dark .bg-gray-100 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .bg-white\/50 {
+            background-color: rgb(15 23 42 / 0.5); /* slate-950 with opacity */
+        }
+        html.dark .bg-gray-50 {
+            background-color: rgb(30 41 59 / var(--tw-bg-opacity)); /* slate-900 */
+        }
+        html.dark .bg-gray-200 {
+            background-color: rgb(51 65 85 / var(--tw-bg-opacity)); /* slate-700 */
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -39,6 +114,9 @@
                         <button onclick="refreshData()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors">
                             <i data-lucide="refresh-cw" class="h-4 w-4"></i>
                             Atualizar
+                        </button>
+                        <button id="themeToggle" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors">
+                            <!-- Ícone será definido pelo JavaScript -->
                         </button>
                     </div>
                 </div>
@@ -185,5 +263,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="theme-toggle.js"></script>
 </body>
 </html>
