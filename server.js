@@ -15,9 +15,10 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static(path.join(__dirname, "public")))
 
-// Função para garantir que as tabelas existam (executada na inicialização)
+// Função para garantir que as tabelas existam e tenham as restrições corretas
 async function ensureTablesExist() {
   try {
+    // 1. Criar tabela 'tickets' se não existir
     await sql`
       CREATE TABLE IF NOT EXISTS tickets (
         id TEXT PRIMARY KEY,
@@ -31,11 +32,38 @@ async function ensureTablesExist() {
         closed_by TEXT NOT NULL,
         priority TEXT NOT NULL,
         satisfaction INTEGER,
-        channel_id TEXT NOT NULL UNIQUE,
+        channel_id TEXT NOT NULL, -- Removido UNIQUE daqui para adicionar separadamente
         created_at TIMESTAMP WITH TIME ZONE NOT NULL,
         reason TEXT
       );
     `
+    console.log("✅ Tabela 'tickets' verificada/criada.")
+
+    // 2. Adicionar restrição UNIQUE à coluna 'channel_id' na tabela 'tickets'
+    // Isso é necessário caso a tabela já existisse sem essa restrição.
+    // Usamos um bloco DO $$ para lidar com o caso de a restrição já existir.
+    await sql`
+      DO $$
+      BEGIN
+          -- Verifica se a restrição UNIQUE já existe
+          IF NOT EXISTS (
+              SELECT 1
+              FROM pg_constraint
+              WHERE conname = 'unique_channel_id' AND conrelid = 'tickets'::regclass
+          ) THEN
+              -- Adiciona a restrição UNIQUE se não existir
+              ALTER TABLE tickets
+              ADD CONSTRAINT unique_channel_id UNIQUE (channel_id);
+              RAISE NOTICE 'Restrição UNIQUE "unique_channel_id" adicionada à tabela "tickets".';
+          ELSE
+              RAISE NOTICE 'Restrição UNIQUE "unique_channel_id" já existe na tabela "tickets".';
+          END IF;
+      END
+      $$;
+    `
+    console.log("✅ Restrição UNIQUE para 'channel_id' na tabela 'tickets' verificada/adicionada.")
+
+    // 3. Criar tabela 'messages' se não existir (agora a FK deve funcionar)
     await sql`
       CREATE TABLE IF NOT EXISTS messages (
         id TEXT PRIMARY KEY,
@@ -49,7 +77,9 @@ async function ensureTablesExist() {
         FOREIGN KEY (ticket_channel_id) REFERENCES tickets(channel_id) ON DELETE CASCADE
       );
     `
-    console.log("✅ Tabelas 'tickets' e 'messages' verificadas/criadas com sucesso.")
+    console.log("✅ Tabela 'messages' verificada/criada.")
+
+    console.log("✅ Todas as tabelas e restrições verificadas/criadas com sucesso.")
   } catch (error) {
     console.error("❌ Erro ao verificar/criar tabelas:", error)
     process.exit(1) // Sair se não conseguir conectar ao DB ou criar tabelas
